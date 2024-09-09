@@ -1,0 +1,5 @@
+#!/bin/bash
+# Script to compile a Python script stored in the $PYFILE environment variable
+
+# Compile the Python file and output it as .pyc
+python3 -m py_compile "$PYFILE"
