@@ -19,5 +19,5 @@ elif operator == '*':
 elif operator == '/':
     print(f"{a} {operator} {b} = {div(a, b)}")
 else:
-    print("Unknown operator. Available operators: +, -, * and /")
+    print("Unknown operator. Available operators: +, -, * and /\n")
     sys.exit(1)
