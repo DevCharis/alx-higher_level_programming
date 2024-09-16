@@ -55,22 +55,31 @@ listint_t *add_nodeint_end(listint_t **head, const int n)
 
     return (new);
 }
+// Function to reverse a linked list
+listint_t *reverse_list(listint_t *head) {
+    listint_t *prev = NULL, *next = NULL;
 
+    while (head != NULL) {
+        next = head->next; // Store next node
+        head->next = prev; // Reverse the link
+        prev = head;       // Move prev up
+        head = next;       // Move head up
+    }
+    return prev; // New head of the reversed list
+}
 
 // Function to compare two linked lists
-int compare_lists(listint_t *first, listint_t *second) {
-    while (first && second) {
-        if (first->n != second->n)
-            return 0;
-        first = first->next;
-        second = second->next;
+int compare_lists(listint_t *list1, listint_t *list2) {
+    while (list1 != NULL && list2 != NULL) {
+        if (list1->n != list2->n) {
+            return 0; // Not a palindrome
+        }
+        list1 = list1->next;
+        list2 = list2->next;
     }
-
-    // Both should be NULL at this point to be equal
-    if (!first && !second)
-        return 1;
-    return 0;
+    return (list1 == NULL && list2 == NULL) ? 1 : 0; // Both lists should be the same length
 }
+
 /**
  * free_listint - frees a listint_t list
  * @head: pointer to list to be freed
@@ -87,15 +96,4 @@ void free_listint(listint_t *head)
         free(current);
     }
 }
-// Function to reverse a linked list
-listint_t *reverse_list(listint_t *head) {
-    listint_t *prev = NULL, *next = NULL, *current = head;
 
-    while (current != NULL) {
-        next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
-    }
-    return prev;
-}
